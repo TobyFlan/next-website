@@ -27,10 +27,9 @@ export default function Header() {
 
 function ProfileSection() {
 
-
     return(
         <motion.div 
-        className="flex flex-col items-center justify-center min-h-screen p-4"
+        className="flex flex-col items-center min-h-screen p-24"
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
@@ -56,6 +55,7 @@ function LinksSection() {
     const [isCopied, setIsCopied] = useState(false);
     const email = "toby.flanagan@hotmail.co.uk";
 
+    // check if mobile
     useEffect(() => {
         const checkMobile = () => setIsMobile(window.innerWidth <= 768);
         checkMobile();
@@ -64,7 +64,7 @@ function LinksSection() {
         return () => window.removeEventListener('resize', () => checkMobile());
     })
 
-
+    // copy email to clipboard
     const copyToClipboard = () => {
         navigator.clipboard.writeText(email);
         setIsCopied(true);
@@ -77,7 +77,7 @@ function LinksSection() {
 
         <main>
 
-            <div className="flex justify-between items-start">
+            <div className="flex justify-between items-start transition-all duration-200">
 
                 {/* Left section with email and cv */}
                 <div className="flex space-x-4 p-6">
@@ -87,7 +87,7 @@ function LinksSection() {
                                 {!isMobile && <p className="text-sm text-gray-300 px-4">{email}</p>}
                                 <Button 
                                     size="sm"
-                                    className={`${isMobile ? "bg-gray-950/70" : "bg-gray-700/50"} text-gray-300 hover:text-gray-100 rounded-full px-4 py-2 transition-colors duration-200 backdrop-blur-md `}
+                                    className={`${isMobile ? "bg-gray-950/70" : "bg-gray-700/50"} text-gray-300 hover:text-gray-100 rounded-full px-4 py-2 transition-all duration-200`}
                                     onClick={copyToClipboard}
                                 >
                                     <p>{isCopied ? "Copied!" : isMobile ? "Email" : "Copy"}</p>
@@ -101,7 +101,7 @@ function LinksSection() {
                             <div className="flex items-center">
                                 <Button 
                                     size="sm"
-                                    className="bg-gray-700/50 text-gray-300 hover:text-gray-100 rounded-full px-4 py-2 transition-colors duration-200 backdrop-blur-md"
+                                    className="bg-gray-700/50 text-gray-300 hover:text-gray-100 rounded-full px-4 py-2 transition-colors duration-200"
                                     onClick={() => window.open("https://docs.google.com/document/d/1gI_YSFg0zwChIqjyK7UdAZ1BYpqwBCbsfLv-sospqBI/edit?usp=sharing")}
                                 >
                                     <p>Resume</p>
@@ -112,7 +112,7 @@ function LinksSection() {
                 </div>
 
                 {/* Right section with socials */}
-                <div className={`flex ${isMobile ? 'space-x-2 p-6' : 'space-x-4 p-9'} items-center`}>
+                <div className={`flex ${isMobile ? 'space-x-2 p-6' : 'space-x-4 p-10'} items-center`}>
 
                     {isMobile ? (
                         <>
@@ -149,7 +149,7 @@ function SocialButton({ icon, href }: { icon: React.ReactNode, href: string }) {
             <CardContent className="p-2">
                 <Button 
                     size="sm"
-                    className="bg-gray-700/50 text-gray-300 hover:text-gray-100 rounded-full p-2 transition-colors duration-200 backdrop-blur-md"
+                    className="bg-gray-700/50 text-gray-300 hover:text-gray-100 rounded-full p-2 transition-colors duration-200"
                     onClick={() => window.open(href, '_blank')}
                 >
                     {icon}

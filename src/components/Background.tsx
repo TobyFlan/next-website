@@ -13,7 +13,7 @@ export default function Background() {
 
 
     // access the canvas HTML element
-    const backgroundRef = useRef<HTMLCanvasElement>(null);
+    const backgroundRef = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
 
