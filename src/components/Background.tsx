@@ -1,96 +1,125 @@
-import { useEffect, useRef, useState } from 'react';
+'use client'
 
+import React, { useEffect, useRef } from 'react'
 
-// approx 1cm apart
-const GRID_SIZE = 30;
+const Background: React.FC = () => {
+  const canvasRef = useRef<HTMLCanvasElement>(null)
 
+  useEffect(() => {
+    const canvas = canvasRef.current
+    if (!canvas) return
 
-export default function Background() {
+    const ctx = canvas.getContext('2d')
+    if (!ctx) return
 
-    // keep track of mouse pos
-    const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
-    const [isMobile, setIsMobile] = useState(false);
+    canvas.width = window.innerWidth
+    canvas.height = window.innerHeight
 
+    const stars: Star[] = []
+    const starCount = 200
 
-    // access the canvas HTML element
-    const backgroundRef = useRef<HTMLDivElement>(null);
+    class Star {
+      x: number
+      y: number
+      radius: number
+      opacity: number
+      twinkleSpeed: number
 
-    useEffect(() => {
+      constructor() {
+        if (!canvas) throw new Error('Canvas is null')
+        this.x = Math.random() * canvas.width
+        this.y = Math.random() * canvas.height
+        this.radius = Math.random() * 1.5 + 0.5
+        this.opacity = Math.random() * 0.5 + 0.5
+        this.twinkleSpeed = Math.random() / 2 * 0.02 + 0.0005
+      }
 
-        // check if mobile
-        if (window.innerWidth <= 768) {
-            setIsMobile(true);
-            setMousePos({
-                x: window.innerWidth / 2,
-                y: 0,
-            });
-            return;
-        }
-        else {
-            setIsMobile(false);
-        }
+      twinkle(time: number) {
+        this.opacity = 0.5 + Math.sin(time * this.twinkleSpeed) * 0.25
+      }
 
-        // event handler to check mouse pos
-        const handleMouseMove = (e: MouseEvent) => {
-            if (backgroundRef.current) {
-                const rect = backgroundRef.current.getBoundingClientRect();
-                setMousePos({
-                    x: e.clientX - rect.left,
-                    y: e.clientY - rect.top,
-                });
-            }
-        };
-
-        window.addEventListener('mousemove', handleMouseMove);
-
-        return () => {
-            window.removeEventListener('mousemove', handleMouseMove);
-        };
-    }, []);
-
-
-    // function to draw the grid of dots
-    const genGrid = () => {
-        const dots = [];
-        if (backgroundRef.current) {
-            const { width, height } = backgroundRef.current.getBoundingClientRect();
-            for (let x = 0; x < width; x += GRID_SIZE) {
-                for (let y = 0; y < height; y += GRID_SIZE) {
-
-                    // increase opacity for dots close to the mouse
-                    const dist = Math.sqrt((x - mousePos.x) ** 2 + (y - mousePos.y) ** 2);
-                    const opacity = 1 - Math.min(1, dist / (isMobile ? 500 : 300));
-
-                    // push HTML element to dots array
-                    dots.push(
-                        <div
-                            key = {`${x}-${y}`}
-                            className="absolute rounded-full bg-gray-200"
-                            style={{
-                                width: '2px',
-                                height: '2px',
-                                top: `${y}px`,
-                                left: `${x}px`,
-                                opacity,
-                            }}
-                        />
-                    )
-                }
-            }
-        }
-        return dots;
+      draw() {
+        if (!ctx) return
+        ctx.beginPath()
+        ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2)
+        ctx.fillStyle = `rgba(255, 255, 255, ${this.opacity})`
+        ctx.fill()
+      }
     }
 
-    return (
-        <div
-            ref={backgroundRef}
-            className="fixed inset-0 bg-gray-800"
-            style={{ perspective: '1000px' }}
-        >
-            {genGrid()}
-        </div>
-    )
-    
+    for (let i = 0; i < starCount; i++) {
+      stars.push(new Star())
+    }
 
+    const drawNebula = (time: number) => {
+      if (!ctx || !canvas) return
 
+      // Clear canvas
+      ctx.clearRect(0, 0, canvas.width, canvas.height)
+
+      // Fill the canvas with black as the base
+      ctx.fillStyle = 'black'
+      ctx.fillRect(0, 0, canvas.width, canvas.height)
+
+      // Create gradient
+      const gradient = ctx.createRadialGradient(
+        canvas.width / 2,
+        canvas.height / 2,
+        0,
+        canvas.width / 2,
+        canvas.height / 2,
+        canvas.width / 2
+      )
+
+      // Add color stops
+      const breathe = Math.sin(time / 5000) * 0.1 + 0.9
+      gradient.addColorStop(0, `rgba(30, 10, 60, ${breathe})`)
+      gradient.addColorStop(0.3, `rgba(60, 20, 90, ${breathe * 0.8})`)
+      gradient.addColorStop(0.6, `rgba(90, 30, 110, ${breathe * 0.6})`)
+      gradient.addColorStop(1, `rgba(20, 10, 40, ${breathe * 0.4})`)
+
+      // Fill background
+      ctx.fillStyle = gradient
+      ctx.fillRect(0, 0, canvas.width, canvas.height)
+
+      // Draw stars
+      stars.forEach(star => {
+        star.twinkle(time)
+        star.draw()
+      })
+    }
+
+    let animationId: number
+
+    const animate = (time: number) => {
+      drawNebula(time)
+      animationId = requestAnimationFrame(animate)
+    }
+
+    animate(0)
+
+    const handleResize = () => {
+      if (canvas) {
+        canvas.width = window.innerWidth
+        canvas.height = window.innerHeight
+      }
+    }
+
+    window.addEventListener('resize', handleResize)
+
+    return () => {
+      window.removeEventListener('resize', handleResize)
+      cancelAnimationFrame(animationId)
+    }
+  }, [])
+
+  return (
+    <canvas
+      ref={canvasRef}
+      className="fixed inset-0 w-full h-full"
+      style={{ zIndex: -1 }}
+    />
+  )
 }
+
+export default Background
