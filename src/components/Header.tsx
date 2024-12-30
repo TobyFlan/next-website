@@ -38,7 +38,7 @@ function ProfileSection({ isMobile }: { isMobile: boolean }) {
 
     return(
         <motion.div 
-            className="flex flex-col items-center min-h-screen p-24"
+            className="flex flex-col items-center p-24"
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
@@ -151,7 +151,7 @@ function LinksSection({ isMobile }: { isMobile: boolean }) {
                 </div>
 
                 {/* Right section with socials */}
-                <div className={`flex ${isMobile ? 'space-x-2 p-6' : 'space-x-4 p-10'} items-center`}>
+                <div className={`flex ${isMobile ? 'space-x-1 p-6' : 'space-x-4 p-10'} items-center`}>
 
                     {isMobile ? (
                         <>

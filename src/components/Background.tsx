@@ -2,7 +2,12 @@
 
 import React, { useEffect, useRef } from 'react'
 
-const Background: React.FC = () => {
+interface BackgroundProps {
+  className?: string;
+  children?: React.ReactNode;
+}
+
+const Background: React.FC<BackgroundProps> = ({ className = '', children }) => {
   const canvasRef = useRef<HTMLCanvasElement>(null)
 
   useEffect(() => {
@@ -12,114 +17,63 @@ const Background: React.FC = () => {
     const ctx = canvas.getContext('2d')
     if (!ctx) return
 
-    canvas.width = window.innerWidth
-    canvas.height = window.innerHeight
+    const resizeCanvas = () => {
+      const parent = canvas.parentElement
+      if (!parent) return
 
-    const stars: Star[] = []
-    const starCount = 200
+      canvas.width = parent.clientWidth
+      canvas.height = parent.clientHeight
+      drawBackground()
+    }
 
-    class Star {
-      x: number
-      y: number
-      radius: number
-      opacity: number
-      twinkleSpeed: number
+    const drawBackground = () => {
+      if (!ctx || !canvas) return
 
-      constructor() {
-        if (!canvas) throw new Error('Canvas is null')
-        this.x = Math.random() * canvas.width
-        this.y = Math.random() * canvas.height
-        this.radius = Math.random() * 1.5 + 0.5
-        this.opacity = Math.random() * 0.5 + 0.5
-        this.twinkleSpeed = Math.random() / 2 * 0.02 + 0.0005
-      }
+      const gradient = ctx.createRadialGradient(
+        canvas.width / 2, canvas.height / 2, 0,
+        canvas.width / 2, canvas.height / 2, canvas.width / 2
+      )
 
-      twinkle(time: number) {
-        this.opacity = 0.5 + Math.sin(time * this.twinkleSpeed) * 0.25
-      }
+      gradient.addColorStop(0, '#1a1a2e')
+      gradient.addColorStop(0.5, '#16213e')
+      gradient.addColorStop(1, '#0f3460')
 
-      draw() {
-        if (!ctx) return
+      ctx.fillStyle = gradient
+      ctx.fillRect(0, 0, canvas.width, canvas.height)
+
+      for (let i = 0; i < 50; i++) {
+        const x = Math.random() * canvas.width
+        const y = Math.random() * canvas.height
+        const radius = Math.random() * 1.5
+        const opacity = Math.random() * 0.5 + 0.5
+
         ctx.beginPath()
-        ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2)
-        ctx.fillStyle = `rgba(255, 255, 255, ${this.opacity})`
+        ctx.arc(x, y, radius, 0, Math.PI * 2)
+        ctx.fillStyle = `rgba(255, 255, 255, ${opacity})`
         ctx.fill()
       }
     }
 
-    for (let i = 0; i < starCount; i++) {
-      stars.push(new Star())
-    }
-
-    const drawNebula = (time: number) => {
-      if (!ctx || !canvas) return
-
-      // Clear canvas
-      ctx.clearRect(0, 0, canvas.width, canvas.height)
-
-      // Fill the canvas with black as the base
-      ctx.fillStyle = 'black'
-      ctx.fillRect(0, 0, canvas.width, canvas.height)
-
-      // Create gradient
-      const gradient = ctx.createRadialGradient(
-        canvas.width / 2,
-        canvas.height / 2,
-        0,
-        canvas.width / 2,
-        canvas.height / 2,
-        canvas.width / 2
-      )
-
-      // Add color stops
-      const breathe = Math.sin(time / 5000) * 0.1 + 0.9
-      gradient.addColorStop(0, `rgba(30, 10, 60, ${breathe})`)
-      gradient.addColorStop(0.3, `rgba(60, 20, 90, ${breathe * 0.8})`)
-      gradient.addColorStop(0.6, `rgba(90, 30, 110, ${breathe * 0.6})`)
-      gradient.addColorStop(1, `rgba(20, 10, 40, ${breathe * 0.4})`)
-
-      // Fill background
-      ctx.fillStyle = gradient
-      ctx.fillRect(0, 0, canvas.width, canvas.height)
-
-      // Draw stars
-      stars.forEach(star => {
-        star.twinkle(time)
-        star.draw()
-      })
-    }
-
-    let animationId: number
-
-    const animate = (time: number) => {
-      drawNebula(time)
-      animationId = requestAnimationFrame(animate)
-    }
-
-    animate(0)
-
-    const handleResize = () => {
-      if (canvas) {
-        canvas.width = window.innerWidth
-        canvas.height = window.innerHeight
-      }
-    }
-
-    window.addEventListener('resize', handleResize)
+    resizeCanvas()
+    window.addEventListener('resize', resizeCanvas)
 
     return () => {
-      window.removeEventListener('resize', handleResize)
-      cancelAnimationFrame(animationId)
+      window.removeEventListener('resize', resizeCanvas)
     }
   }, [])
 
   return (
-    <canvas
-      ref={canvasRef}
-      className="fixed inset-0 w-full h-full"
-      style={{ zIndex: -1 }}
-    />
+    <div className={`relative ${className}`}>
+      <canvas
+        ref={canvasRef}
+        className="absolute inset-0 w-full h-full"
+      />
+      <div className="relative z-10">
+        {children}
+      </div>
+    </div>
   )
 }
 
 export default Background
+
