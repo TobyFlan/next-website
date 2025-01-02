@@ -105,12 +105,12 @@ function LinksSection({ isMobile }: { isMobile: boolean }) {
 
     return (
 
-        <main>
+        <main className="overflow-x-hidden">
 
-            <div className="flex justify-between items-start transition-all duration-200">
+            <div className="flex justify-between items-start transition-all duration-200 w-full">
 
                 {/* Left section with email and cv */}
-                <div className="flex space-x-4 p-6">
+                <div className="flex space-x-4 pt-6 pb-6 pl-6 pr-0">
                     <Card className={`bg-gray-800/50 border-gray-700 rounded-full overflow-hidden ${!isMobile && "backdrop-blur-xl"}`}>
                         <CardContent className="p-2">
                             <div className="flex items-center space-x-2">
@@ -142,7 +142,7 @@ function LinksSection({ isMobile }: { isMobile: boolean }) {
                 </div>
 
                 {/* Right section with socials */}
-                <div className={`flex ${isMobile ? 'space-x-1 p-6' : 'space-x-4 p-10'} items-center`}>
+                <div className={`flex ${isMobile ? 'space-x-1 pt-6 pb-6 pl-0 pr-6' : 'space-x-4 p-10'} items-center`}>
 
                     {isMobile ? (
                         <>

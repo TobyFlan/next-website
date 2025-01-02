@@ -15,8 +15,6 @@ import { Cpu, SquareTerminal } from 'lucide-react'
 
 import InfoItem from './InfoItem';
 
-// Tools:
-// React, Next.js, Tailwind CSS, MongoDB, Express, Node.js, Firebase, Microsoft Azure
 
 export default function TechSection() {
   const [isVisible, setIsVisible] = useState(false);
