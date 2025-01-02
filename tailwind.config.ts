@@ -9,6 +9,21 @@ export default {
   ],
   theme: {
   	extend: {
+		animation: {
+			gradient: 'gradient 15s ease infinite',
+		},
+		keyframes: {
+			gradient: {
+				'0%, 100%': {
+				'background-size': '400% 400%',
+				'background-position': '0% 50%',
+				},
+				'50%': {
+				'background-size': '400% 400%',
+				'background-position': '100% 50%',
+				},
+			},
+		},
   		colors: {
   			background: 'var(--background)',
   			foreground: 'var(--foreground)'

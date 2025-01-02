@@ -4,14 +4,14 @@ import AboutSection from '@/components/AboutSection';
 
 export default function Home() {
   return (
-    <main className="min-h-screen text-white">
-      <Background >
-        <Header />
-      </Background>
+    <main className="relative min-h-screen text-white">
 
-      <Background className="bg-gray-900">
+      <Background />
+      <div className="relative z-10">
+        <Header />
         <AboutSection />
-      </Background>
+      </div>
+
     </main>
   );
 }
