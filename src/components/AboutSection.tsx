@@ -4,7 +4,19 @@ import { useEffect, useState } from 'react';
 import { Card, CardContent } from "./ui/card";
 import Image from 'next/image';
 
-import { SiNextdotjs } from 'react-icons/si';
+import { 
+  SiJavascript, SiPython, SiCplusplus, SiC, SiHtml5, SiCss3, 
+  SiReact, SiNextdotjs, SiTailwindcss, SiMongodb, SiExpress, SiFirebase
+ } from 'react-icons/si';
+import { FaJava, FaNodeJs } from 'react-icons/fa';
+import { TbDatabase } from 'react-icons/tb';
+import { VscAzure } from 'react-icons/vsc';
+import { Cpu, SquareTerminal } from 'lucide-react'
+
+import InfoItem from './InfoItem';
+
+// Tools:
+// React, Next.js, Tailwind CSS, MongoDB, Express, Node.js, Firebase, Microsoft Azure
 
 export default function AboutSection() {
   const [isVisible, setIsVisible] = useState(false);
@@ -22,16 +34,119 @@ export default function AboutSection() {
         <div className="container mx-auto px-4 relative z-10 justify-center flex flex-col items-center">
           <br></br>
           <br></br>
-          <h2 className="text-3xl font-bold mb-4 text-white">Technologies</h2>
+          <InfoItem icon={<SquareTerminal className="w-7 h-7" />} text="Languages" />
           <br></br>
            
-          <TechnologyItem name={"NextJS"} logo={SiNextdotjs} description={"Web development framework"} />
+          <LanguagesSection />
           
           <br></br>
+          <InfoItem icon={<Cpu className="w-7 h-7" />} text="Main Tools" />
+          <br></br>
+          <ToolsSection />
           <br></br>
           <br></br>
         </div>
       </section>
+    </div>
+  );
+}
+
+function ToolsSection() {
+
+return (
+
+  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+    {/* Tools */}
+    <TechnologyItem
+      name="React"
+      logo={SiReact}
+      description="JS Web Framwork"
+    />
+    <TechnologyItem
+      name="Next.js"
+      logo={SiNextdotjs}
+      description="React Web Framework"
+    />
+    <TechnologyItem
+      name="Tailwind CSS"
+      logo={SiTailwindcss}
+      description="Streamlined CSS framework"
+    />
+    <TechnologyItem
+      name="MongoDB"
+      logo={SiMongodb}
+      description="NoSQL database"
+    />
+    <TechnologyItem
+      name="Express"
+      logo={SiExpress}
+      description="Backend framework for Node.js"
+    />
+    <TechnologyItem
+      name="Node.js"
+      logo={FaNodeJs}
+      description="JavaScript web runtime"
+    />
+    <TechnologyItem
+      name="Firebase"
+      logo={SiFirebase}
+      description="Google development platform"
+    />
+    <TechnologyItem
+      name="Microsoft Azure"
+      logo={VscAzure}
+      description="Cloud computing platform"
+    />
+  </div>
+);
+
+
+}
+
+function LanguagesSection() {
+  return (
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+      {/* Technology Items */}
+      <TechnologyItem
+        name="JavaScript / TypeScript"
+        logo={SiJavascript}
+        description="Web development"
+      />
+      <TechnologyItem
+        name="Python"
+        logo={SiPython}
+        description="Mathematics and data science"
+      />
+      <TechnologyItem
+        name="Java"
+        logo={FaJava}
+        description="Object-oriented programming"
+      />
+      <TechnologyItem
+        name="C++"
+        logo={SiCplusplus}
+        description="High-performance computing"
+      />
+      <TechnologyItem
+        name="C"
+        logo={SiC}
+        description="Procedural programming"
+      />
+      <TechnologyItem
+        name="HTML"
+        logo={SiHtml5}
+        description="Web content"
+      />
+      <TechnologyItem
+        name="CSS"
+        logo={SiCss3}
+        description="Web styling"
+      />
+      <TechnologyItem
+        name="SQL"
+        logo={TbDatabase}
+        description="Database management"
+      />
     </div>
   );
 }

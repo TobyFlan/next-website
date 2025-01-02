@@ -9,6 +9,8 @@ import { motion } from 'framer-motion';
 import { Linkedin, Github, Instagram, Laptop, MapPin, GraduationCap } from 'lucide-react';
 import toast from 'react-hot-toast';
 
+import InfoItem from './InfoItem';
+
 
 export default function Header() {
   const [isMobile, setIsMobile] = useState(false);
@@ -85,17 +87,6 @@ function ProfileSection({ isMobile }: { isMobile: boolean }) {
     )
 }
 
-function InfoItem({ icon, text }: { icon: React.ReactNode, text: string }) {
-    return (
-        <motion.div 
-        className="flex items-center justify-center space-x-2 text-gray-400"
-        whileHover={{ scale: 1.05, color: '#9CA3AF' }}
-        >
-            {icon}
-            <span>{text}</span>
-        </motion.div>
-    )
-}
 
 
 function LinksSection({ isMobile }: { isMobile: boolean }) {
