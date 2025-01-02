@@ -1,6 +1,6 @@
 import Header from '../components/Header';
 import Background from '@/components/Background';
-import AboutSection from '@/components/AboutSection';
+import TechSection from '@/components/TechSection';
 
 export default function Home() {
   return (
@@ -9,7 +9,7 @@ export default function Home() {
       <Background />
       <div className="relative z-10">
         <Header />
-        <AboutSection />
+        <TechSection />
       </div>
 
     </main>

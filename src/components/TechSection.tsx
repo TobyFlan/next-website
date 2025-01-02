@@ -18,7 +18,7 @@ import InfoItem from './InfoItem';
 // Tools:
 // React, Next.js, Tailwind CSS, MongoDB, Express, Node.js, Firebase, Microsoft Azure
 
-export default function AboutSection() {
+export default function TechSection() {
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
@@ -43,6 +43,7 @@ export default function AboutSection() {
           <InfoItem icon={<Cpu className="w-7 h-7" />} text="Main Tools" />
           <br></br>
           <ToolsSection />
+          <br></br>
           <br></br>
           <br></br>
         </div>
@@ -156,7 +157,7 @@ function TechnologyItem({ name, logo: Logo, description }: { name: string, logo:
 
 
   return(
-    <Card className="bg-gray-800/50 border-gray-700 rounded-full overflow-hidden backdrop-blur-xl transition-all duration-300 hover:bg-gray-700/60 hover:scale-105 w-64">
+    <Card className="bg-gray-800/50 border-gray-700 rounded-full overflow-hidden backdrop-blur-none lg:backdrop-blur-xl transition-all duration-300 hover:bg-gray-700/60 hover:scale-105 w-64">
       <CardContent className="p-2">
         <div className="flex items-center space-x-3">
           <div className="flex-shrink-0">
