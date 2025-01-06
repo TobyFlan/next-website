@@ -29,21 +29,18 @@ export default function TechSection() {
         <div className="absolute inset-0 bg-gradient-to-br from-indigo-900/30 via-purple-800/20 to-pink-700/30 animate-gradient"></div>
         <div className="absolute top-0 left-0 right-0 h-1/2 bg-gradient-to-t from-transparent via-transparent to-[#050314]"></div>
         <div className="absolute bottom-0 left-0 right-0 h-1/2 bg-gradient-to-b from-transparent via-transparent to-[#050314]"></div>
-        <div className="container mx-auto px-4 relative z-10 justify-center flex flex-col items-center">
-          <br></br>
-          <br></br>
-          <InfoItem icon={<SquareTerminal className="w-7 h-7" />} text="Languages" />
-          <br></br>
-           
-          <LanguagesSection />
+        <div className="container mx-auto px-4 relative z-10 flex flex-col items-center space-y-12">
+          <div className="flex flex-col items-center space-y-6">
+            <InfoItem icon={<SquareTerminal className="w-7 h-7" />} text="Languages" />
+            <LanguagesSection />
+          </div>
           
-          <br></br>
-          <InfoItem icon={<Cpu className="w-7 h-7" />} text="Main Tools" />
-          <br></br>
-          <ToolsSection />
-          <br></br>
-          <br></br>
-          <br></br>
+
+          <div className="flex flex-col items-center space-y-6">
+            <InfoItem icon={<Cpu className="w-7 h-7" />} text="Main Tools" />
+            <ToolsSection />
+          </div>
+
         </div>
       </section>
     </div>
