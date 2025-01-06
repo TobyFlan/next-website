@@ -48,11 +48,11 @@ function ProfileSection({ isMobile }: { isMobile: boolean }) {
 
             <div className="relative w-full max-w-sm mx-auto h-48 sm:h-40">
                 <div className="absolute inset-0 flex items-center justify-center">
-                    <Card className="bg-gray-800/50 border-gray-700 rounded-full overflow-hidden backdrop-blur-xl flex items-center justify-center p-2 w-36 h-36">
-                    <Avatar className="w-32 h-32">
-                        <AvatarImage src="/drippy shirt.jpg" alt="Toby Flanagan" />
-                        <AvatarFallback>TF</AvatarFallback>
-                    </Avatar>
+                    <Card className="bg-gray-800/50 border-gray-700 rounded-full overflow-hidden backdrop-blur-xl flex items-center justify-center p-2">
+                        <Avatar className="w-40 h-40">
+                            <AvatarImage src="/profile-pic.jpg" alt="Toby Flanagan" className="object-cover" />
+                            <AvatarFallback>TF</AvatarFallback>
+                        </Avatar>
                     </Card>
                 </div>
 
