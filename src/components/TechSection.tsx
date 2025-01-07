@@ -56,7 +56,7 @@ function ToolsSection() {
       <TechnologyItem
         name="React"
         logo={SiReact}
-        description="JS Web Framwork"
+        description="JS Web Framework"
       />
       <TechnologyItem
         name="Next.js"
@@ -66,32 +66,32 @@ function ToolsSection() {
       <TechnologyItem
         name="Tailwind CSS"
         logo={SiTailwindcss}
-        description="Streamlined CSS framework"
+        description="Streamlined CSS Framework"
       />
       <TechnologyItem
         name="MongoDB"
         logo={SiMongodb}
-        description="NoSQL database"
+        description="NoSQL Database"
       />
       <TechnologyItem
         name="Express"
         logo={SiExpress}
-        description="Backend framework for Node.js"
+        description="Backend Framework for Node.js"
       />
       <TechnologyItem
         name="Node.js"
         logo={FaNodeJs}
-        description="JavaScript web runtime"
+        description="JavaScript Web Runtime"
       />
       <TechnologyItem
         name="Firebase"
         logo={SiFirebase}
-        description="Google development platform"
+        description="Google Development Platform"
       />
       <TechnologyItem
         name="Microsoft Azure"
         logo={VscAzure}
-        description="Cloud computing platform"
+        description="Cloud Computing Platform"
       />
     </div>
   );
@@ -106,42 +106,42 @@ function LanguagesSection() {
       <TechnologyItem
         name="JavaScript / TypeScript"
         logo={SiJavascript}
-        description="Web development"
+        description="Web Development"
       />
       <TechnologyItem
         name="Python"
         logo={SiPython}
-        description="Mathematics and data science"
+        description="Mathematics and Data Science"
       />
       <TechnologyItem
         name="Java"
         logo={FaJava}
-        description="Object-oriented programming"
+        description="Object-Oriented Programming"
       />
       <TechnologyItem
         name="C++"
         logo={SiCplusplus}
-        description="High-performance computing"
+        description="High-Performance Computing"
       />
       <TechnologyItem
         name="C"
         logo={SiC}
-        description="Procedural programming"
+        description="Procedural Programming"
       />
       <TechnologyItem
         name="HTML"
         logo={SiHtml5}
-        description="Web content"
+        description="Web Content"
       />
       <TechnologyItem
         name="CSS"
         logo={SiCss3}
-        description="Web styling"
+        description="Web Styling"
       />
       <TechnologyItem
         name="SQL"
         logo={TbDatabase}
-        description="Database management"
+        description="Database Management"
       />
     </div>
   );
