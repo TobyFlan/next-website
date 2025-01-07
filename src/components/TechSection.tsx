@@ -152,13 +152,13 @@ function TechnologyItem({ name, logo: Logo, description }: { name: string, logo:
 
 
   return(
-    <Card className="bg-gray-800/50 border-gray-700 rounded-full overflow-hidden backdrop-blur-none lg:backdrop-blur-xl transition-all duration-300 hover:bg-gray-700/60 hover:scale-105 w-64">
-      <CardContent className="p-2">
-        <div className="flex items-center space-x-3">
+    <Card className="bg-gray-800/50 border-gray-700 rounded-full overflow-hidden backdrop-blur-none lg:backdrop-blur-xl transition-all duration-300 hover:bg-gray-700/60 hover:scale-105 w-72">
+      <CardContent className="p-3">
+        <div className="flex items-center space-x-4">
           <div className="flex-shrink-0">
-            <Logo size={40} className="text-gray-300"/>
+            <Logo size={36} className="text-gray-300" />
           </div>
-          <div className="flex flex-col justify-center overflow-hidden">
+          <div className="flex-grow min-w-0">
             <h3 className="text-sm font-medium text-gray-300 truncate">{name}</h3>
             <p className="text-xs text-gray-400 truncate">{description}</p>
           </div>
