@@ -91,7 +91,7 @@ function ProfileSection({ isMobile }: { isMobile: boolean }) {
                             onMouseEnter={() => setIsHovering(true)}
                             onMouseLeave={() => setIsHovering(false)}
                         >
-                            <svg className="absolute w-[180px] h-[180px] -rotate-90 z-20">
+                            <svg className="absolute w-[180px] h-[180px] -rotate-90 z-30">
                                 <defs>
                                     <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="100%">
                                         <stop offset="0%" stopColor="rgba(75, 0, 130, 0.8)" />
@@ -113,7 +113,16 @@ function ProfileSection({ isMobile }: { isMobile: boolean }) {
                                 />
                             </svg>
                             <Avatar className="w-40 h-40 transition-all duration-300 ease-in-out">
-                                <AvatarImage src={altImage ? "/profile-pic-alt.jpg" : "/profile-pic.jpg"} alt="Toby Flanagan" className="object-cover" />
+                                <AvatarImage 
+                                    src="/profile-pic.jpg" 
+                                    alt="Toby Flanagan" 
+                                    className={`object-cover absolute inset-0 transition-opacity duration-300 ease-in-out ${altImage ? 'opacity-0' : 'opacity-100'}`} 
+                                />
+                                <AvatarImage 
+                                    src="/profile-pic-alt.jpg" 
+                                    alt="Toby Flanagan" 
+                                    className={`object-cover absolute inset-0 transition-opacity duration-300 ease-in-out ${altImage ? 'opacity-100' : 'opacity-0'}`} 
+                                />
                                 <AvatarFallback>TF</AvatarFallback>
                             </Avatar>
                         </Card>

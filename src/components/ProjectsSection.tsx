@@ -31,20 +31,6 @@ export default function ProjectsSection() {
           link: "https://blog-app-psi-ashy.vercel.app/"
         },
         {
-            title: "Legacy Website",
-            description: `
-                My first step into web development. A simple website built with HTML, CSS and JavaScript.
-                This project was a great learning experience and helped me understand the basics of web development.
-            `,
-            image: "/legacy_project.png",
-            technologies: [
-                {name:"HTML", icon: SiHtml5},
-                {name:"CSS", icon: SiCss3},
-                {name:"JavaScript", icon: SiJavascript}
-            ],
-            link: "https://tobyflan.github.io/"
-        },
-        {
             title: "Black Hole Ray Tracer",
             description: `
                 A custom ray tracer that simulates the bending of light around a black hole, built as my
@@ -58,7 +44,21 @@ export default function ProjectsSection() {
                 {name:"OpenGL", icon: SiOpengl},
                 {name:"GLSL", icon: SiOpengl}
             ]
-        }
+        },
+        {
+            title: "Legacy Website",
+            description: `
+                My first step into web development. A simple website built with HTML, CSS and JavaScript.
+                This project was a great learning experience and helped me understand the basics of web development.
+            `,
+            image: "/legacy_project.png",
+            technologies: [
+                {name:"HTML", icon: SiHtml5},
+                {name:"CSS", icon: SiCss3},
+                {name:"JavaScript", icon: SiJavascript}
+            ],
+            link: "https://tobyflan.github.io/"
+        },
         
     ];
 

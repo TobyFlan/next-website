@@ -2,7 +2,6 @@
 
 import { useEffect, useState } from 'react';
 import { Card, CardContent } from "./ui/card";
-import Image from 'next/image';
 
 import { 
   SiJavascript, SiPython, SiCplusplus, SiC, SiHtml5, SiCss3, 
