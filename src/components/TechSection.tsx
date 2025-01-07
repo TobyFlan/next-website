@@ -49,52 +49,52 @@ export default function TechSection() {
 
 function ToolsSection() {
 
-return (
+  return (
 
-  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
-    {/* Tools */}
-    <TechnologyItem
-      name="React"
-      logo={SiReact}
-      description="JS Web Framwork"
-    />
-    <TechnologyItem
-      name="Next.js"
-      logo={SiNextdotjs}
-      description="React Web Framework"
-    />
-    <TechnologyItem
-      name="Tailwind CSS"
-      logo={SiTailwindcss}
-      description="Streamlined CSS framework"
-    />
-    <TechnologyItem
-      name="MongoDB"
-      logo={SiMongodb}
-      description="NoSQL database"
-    />
-    <TechnologyItem
-      name="Express"
-      logo={SiExpress}
-      description="Backend framework for Node.js"
-    />
-    <TechnologyItem
-      name="Node.js"
-      logo={FaNodeJs}
-      description="JavaScript web runtime"
-    />
-    <TechnologyItem
-      name="Firebase"
-      logo={SiFirebase}
-      description="Google development platform"
-    />
-    <TechnologyItem
-      name="Microsoft Azure"
-      logo={VscAzure}
-      description="Cloud computing platform"
-    />
-  </div>
-);
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+      {/* Tools */}
+      <TechnologyItem
+        name="React"
+        logo={SiReact}
+        description="JS Web Framwork"
+      />
+      <TechnologyItem
+        name="Next.js"
+        logo={SiNextdotjs}
+        description="React Web Framework"
+      />
+      <TechnologyItem
+        name="Tailwind CSS"
+        logo={SiTailwindcss}
+        description="Streamlined CSS framework"
+      />
+      <TechnologyItem
+        name="MongoDB"
+        logo={SiMongodb}
+        description="NoSQL database"
+      />
+      <TechnologyItem
+        name="Express"
+        logo={SiExpress}
+        description="Backend framework for Node.js"
+      />
+      <TechnologyItem
+        name="Node.js"
+        logo={FaNodeJs}
+        description="JavaScript web runtime"
+      />
+      <TechnologyItem
+        name="Firebase"
+        logo={SiFirebase}
+        description="Google development platform"
+      />
+      <TechnologyItem
+        name="Microsoft Azure"
+        logo={VscAzure}
+        description="Cloud computing platform"
+      />
+    </div>
+  );
 
 
 }

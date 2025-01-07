@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 
 
 import { Avatar, AvatarImage, AvatarFallback } from '@/components/ui/avatar';
@@ -38,6 +38,44 @@ export default function Header() {
 
 function ProfileSection({ isMobile }: { isMobile: boolean }) {
 
+
+    const [isHovering, setIsHovering] = useState(false);
+    const [progress, setProgress] = useState(0);
+    const [altImage, setAltImage] = useState(false);
+    const timerRef = useRef<number | null>(null);
+
+    // easter egg, change image if hovering for 3s
+    useEffect(() => {
+        let startTime: number | null = null;
+
+        if (isHovering) {
+            startTime = Date.now();
+            timerRef.current = window.setInterval(() => {
+                setProgress((prev) => {
+                    if (prev >= 100) {
+                        clearInterval(timerRef.current!);
+                        setAltImage(true);
+                        return 100;
+                    }
+                    return prev + (100/1500) * 16.67
+                });
+            }, 20);
+        }
+        else {
+            if (timerRef.current) clearInterval(timerRef.current);
+            setProgress(0);
+            setAltImage(false);            
+        }
+
+        return () => {
+            if (timerRef.current) clearInterval(timerRef.current);
+        }
+
+    }, [isHovering]);
+
+    const circ = 2 * Math.PI * 80;
+
+
     return(
         <motion.div 
             className="flex flex-col items-center p-24"
@@ -47,14 +85,39 @@ function ProfileSection({ isMobile }: { isMobile: boolean }) {
         >
 
             <div className="relative w-full max-w-sm mx-auto h-48 sm:h-40">
-                <div className="absolute inset-0 flex items-center justify-center">
-                    <Card className="bg-gray-800/50 border-gray-700 rounded-full overflow-hidden backdrop-blur-xl flex items-center justify-center p-2">
-                        <Avatar className="w-40 h-40">
-                            <AvatarImage src="/profile-pic.jpg" alt="Toby Flanagan" className="object-cover" />
-                            <AvatarFallback>TF</AvatarFallback>
-                        </Avatar>
-                    </Card>
-                </div>
+                    <div className="absolute inset-0 flex items-center justify-center">
+                        <Card 
+                            className="relative bg-gray-800/50 border-gray-700 rounded-full overflow-hidden backdrop-blur-xl flex items-center justify-center p-2"
+                            onMouseEnter={() => setIsHovering(true)}
+                            onMouseLeave={() => setIsHovering(false)}
+                        >
+                            <svg className="absolute w-[180px] h-[180px] -rotate-90 z-20">
+                                <defs>
+                                    <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                                        <stop offset="0%" stopColor="rgba(75, 0, 130, 0.8)" />
+                                        <stop offset="50%" stopColor="rgba(128, 0, 128, 0.7)" />
+                                        <stop offset="100%" stopColor="rgba(255, 105, 180, 0.8)" />
+                                    </linearGradient>
+                                </defs>
+                                <circle
+                                    className="transition-all duration-300 ease-out"
+                                    strokeWidth="4"
+                                    strokeDasharray={circ}
+                                    strokeDashoffset={circ - (progress / 100) * circ}
+                                    strokeLinecap="round"
+                                    stroke="url(#gradient)"
+                                    fill="transparent"
+                                    r="80"
+                                    cx="90"
+                                    cy="90"
+                                />
+                            </svg>
+                            <Avatar className="w-40 h-40 transition-all duration-300 ease-in-out">
+                                <AvatarImage src={altImage ? "/profile-pic-alt.jpg" : "/profile-pic.jpg"} alt="Toby Flanagan" className="object-cover" />
+                                <AvatarFallback>TF</AvatarFallback>
+                            </Avatar>
+                        </Card>
+                    </div>
 
                 <Card className={
                     `bg-gray-800/50 border-gray-700 rounded-full overflow-hidden 
