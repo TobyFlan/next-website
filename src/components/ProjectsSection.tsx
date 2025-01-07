@@ -18,7 +18,7 @@ export default function ProjectsSection() {
             An active blogging platform built from the ground up. Using React and Next.js for
             the frontend, and Google's Firebase for the backend, providing secure user authentication
             and real-time data updates. Features include user-friendly interactions such as
-            loking posts, intuitive navigation and respinsive design through the use of Tailwind CSS.
+            liking posts, intuitive navigation and responsive design through the use of Tailwind CSS.
           `,
           image: "/blog_project.png",
           technologies: [
