@@ -7,7 +7,7 @@ import InfoItem from './InfoItem';
 import Image from 'next/image';
 import { FaReact } from 'react-icons/fa';
 import { SiCplusplus, SiCss3, SiFirebase, SiHtml5, SiJavascript, SiNextdotjs, SiOpengl, SiTailwindcss, SiTypescript } from 'react-icons/si';
-
+import { TbBrandCSharp, TbDatabase } from 'react-icons/tb';
 
 export default function ProjectsSection() {
 
@@ -46,6 +46,23 @@ export default function ProjectsSection() {
             ]
         },
         {
+            title: "Todo App",
+            description: `
+                A simple to-do list app built with a React frontend and a ASP.NET backend. The app allows users to
+                create, edit and delete their own tasks. It uses JWT tokens for authentication and a SQL database
+                to store users and tasks.
+            `,
+            image: "/todo_project.png",
+            technologies: [
+                {name:"React", icon: FaReact},
+                {name:"Tailwind CSS", icon: SiTailwindcss},
+                {name:"ASP.NET", icon: TbBrandCSharp},
+                {name:"C#", icon: TbBrandCSharp},
+                {name:"TypeScript", icon: SiTypescript},
+                {name:"SQL", icon: TbDatabase }
+            ]
+        },
+        {
             title: "Legacy Website",
             description: `
                 My first step into web development. A simple website built with HTML, CSS and JavaScript.
@@ -59,6 +76,7 @@ export default function ProjectsSection() {
             ],
             link: "https://tobyflan.github.io/"
         },
+
         
     ];
 
